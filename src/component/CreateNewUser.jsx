@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
+import { useNavigate } from "react-router-dom";
+
 import {
   FaUser,
   FaBriefcase,
@@ -8,8 +10,10 @@ import {
   FaCity,
   FaRupeeSign,
 } from "react-icons/fa";
+import axios from "axios";
 
 function CreateNewUser() {
+  const navigation = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     profession: "",
@@ -24,9 +28,29 @@ function CreateNewUser() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/student",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        console.log("Form Data Submitted Successfully!", formData);
+        navigation("/AllUsers");
+      } else {
+        console.log("Error submitting form data..!");
+      }
+    } catch (error) {
+      console.log("Error:", error.response?.data || error);
+    }
   };
 
   return (

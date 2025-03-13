@@ -71,6 +71,7 @@ const AboutContainer = styled.div`
   animation: ${fadeIn} 1s ease-out;
   background: #f8f9fa;
   min-height: 100vh;
+  background-color: #f4f4f4;
 
   h1 {
     font-size: 2.5rem;

@@ -7,7 +7,8 @@ const ErrorContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f8f9fa;
+  background-color: #f4f4f4;
+
   text-align: center;
 
   h1 {
